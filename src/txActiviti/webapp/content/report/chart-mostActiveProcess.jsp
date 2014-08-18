@@ -1,7 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "report");%>
-<%pageContext.setAttribute("currentMenu", "chart");%>
+<%pageContext.setAttribute("currentMenu", "report");%>
 <!doctype html>
 <html lang="en">
 
@@ -53,7 +53,7 @@ $(function () {
     <%@include file="/header/report.jsp"%>
 
 	<div class="row-fluid">
-	<%@include file="/menu/report.jsp"%>
+	<%@include file="/menu/bpm-workspace.jsp"%>
 
 	<!-- start of main -->
     <section id="m-main" class="span10">

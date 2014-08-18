@@ -23,9 +23,11 @@
           <div class="nav-collapse collapse navbar-responsive-collapse">
             <ul class="nav">
               <li class="divider-vertical"></li>
-              <li class="${currentHeader == 'dashboard' ? 'active' : ''}"><a href="${scopePrefix}/dashboard/dashboard.do">首页</a></li>
+              <li class="${currentHeader == 'dashboard' ? 'active' : currentHeader == 'bpm-workspace' ? 'active' : ''}"><a href="${scopePrefix}/dashboard/dashboard.do">首页</a></li>
+              <!-- 
               <li class="${currentHeader == 'bpm-workspace' ? 'active' : ''}"><a href="${scopePrefix}/bpm/workspace-home.do">个人事务</a></li>
               <li class="${currentHeader == 'report' ? 'active' : ''}"><a href="${scopePrefix}/report/chart-mostActiveProcess.do">统计报表</a></li>
+               -->
               <li class="dropdown ${currentHeader == 'scope' ? 'active' : ''}">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">系统管理 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -43,14 +45,17 @@
               </li>
               <!-- 后台功能 -->
               <li class="dropdown ${currentHeader == 'manage' ? 'active' : ''}">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">manage <b class="caret"></b></a>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">后台管理<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#"><i class="icon-user"></i>组织权限管理</a></li>
                   <li><a href="#"><i class="icon-user"></i>菜单管理</a></li>
                   <li class="divider"></li>
+                  <li><a href="${scopePrefix}/serviceModule/serviceModule-show.do"><i class="icon-user"></i>业务模块组件</a></li>
+                  <li class="divider"></li>
 				  <li><a href="${scopePrefix}/table/conf-table-show.do"><i class="icon-user"></i>表存储设计器</a></li>
 				  <li><a href="#"><i class="icon-user"></i>表单设计器</a></li>
 				  <li><a href="#"><i class="icon-user"></i>流程设计器</a></li>
+				  <li><a href="#"><i class="icon-user"></i>通用表单</a></li>
                 </ul>
               </li>
             </ul>

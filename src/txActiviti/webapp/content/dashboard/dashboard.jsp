@@ -93,174 +93,165 @@ $(function(){
 
   <body>
     <%@include file="/header/dashboard.jsp"%>
-
-    <div class="row-fluid m-widget-container-2">
-	  <div class="span4">
-
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>待办任务</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content">
-		  <table class="m-table table-hover">
-			<thead>
-			  <tr>
-				<th>编号</th>
-				<th>名称</th>
-				<th>创建时间</th>
-				<th>&nbsp;</th>
-			  </tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${personalTasks}" var="item">
-			  <tr>
-				<td>${item.id}</td>
-				<td>${item.name}</td>
-				<td><fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				<td>
-				  <a href="${scopePrefix}/form/form-viewTaskForm.do?taskId=${item.id}" class="btn btn-small btn-primary">处理</a>
-				</td>
-			  </tr>
-			  </c:forEach>
-			</tbody>
-		  </table>
-		</div>
-	  </article>
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>通知公告</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content content-inner">
-		  <marquee direction="up" scrollamount="2" >
-		  <c:forEach items="${cmsArticles}" var="item">
-		    <div>
-			  <h4>${item.title}</h4>
-			  <p>${item.content}</p>
-			</div>
-			</c:forEach>
-		  </marquee>
-		</div>
-	  </article>
-
-	  </div>
-
-	  <div class="span4">
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>我的流程</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content">
-		  <table class="m-table table-hover">
-			<thead>
-			  <tr>
-				<th>编号</th>
-				<th>流程定义</th>
-				<th>创建时间</th>
-				<th>&nbsp;</th>
-			  </tr>
-			</thead>
-
-			<tbody>
-			<c:forEach items="${historicProcessInstances}" var="item">
-			  <tr>
-				<td>${item.id}</td>
-				<td>${item.processDefinitionId}</td>
-				<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-				<td>
-                  <a href="${scopePrefix}/bpm/workspace-viewHistory.do?processInstanceId=${item.id}" class="btn btn-small btn-primary">历史</a>
-				</td>
-			  </tr>
-			  </c:forEach>
-			</tbody>
-		  </table>
-		</div>
-	  </article>
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>常用工具</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content">
-		  <table class="m-table table-hover">
-			<tbody>
-			  <tr>
-				<td>地图</td>
-				<td><a href="http://ditu.baidu.com">ditu.baidu.com</a></td>
-			  </tr>
-			  <tr>
-				<td>翻译</td>
-				<td><a href="http://translate.google.com">translate.google.com</a></td>
-			  </tr>
-			</tbody>
-		  </table>
-		</div>
-	  </article>
-
-	  </div>
-
-	  <div class="span4">
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>常用流程</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content">
-		  <table class="m-table table-hover">
-			<thead>
-			  <tr>
-				<th>名称</th>
-				<th width="20%">&nbsp;</th>
-			  </tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${bpmProcesses}" var="item">
-			  <tr>
-				<td>${item.name}</td>
-				<td>
-				  <a href="${scopePrefix}/form/form-viewStartForm.do?bpmProcessId=${item.id}" class="btn btn-small btn-primary">发起</a>
-				</td>
-			  </tr>
-			  </c:forEach>
-			</tbody>
-		  </table>
-		</div>
-	  </article>
-
-	  <article class="m-widget-2">
-        <header class="header">
-		  <h4 class="title"><i class="icon-user"></i>天气预报</h4>
-		  <div class="ctrl">
-		    <a class="btn"><i class="icon-chevron-up"></i></a>
-		  </div>
-		</header>
-        <div class="content content-inner">
-		  <iframe src="http://m.weather.com.cn/m/pn12/weather.htm" style="border:0px"></iframe>
-		</div>
-	  </article>
-
-
-	  </div>
-
-    </div>
-
+    <div class="row-fluid">
+    <%@include file="/menu/bpm-workspace.jsp"%>
+    <!-- start of main -->
+    <section id="m-main" class="span10" style="float:right">
+		    <div class="row-fluid m-widget-container-2">
+			  <div class="span4">
+			      <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>通知公告</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content content-inner">
+					  <marquee direction="up" scrollamount="2" >
+					  <c:forEach items="${cmsArticles}" var="item">
+					    <div>
+						  <h4>${item.title}</h4>
+						  <p>${item.content}</p>
+						</div>
+						</c:forEach>
+					  </marquee>
+					</div>
+				  </article>
+				  <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>常用工具</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content">
+					  <table class="m-table table-hover">
+						<tbody>
+						  <tr>
+							<td>地图</td>
+							<td><a href="http://ditu.baidu.com">ditu.baidu.com</a></td>
+						  </tr>
+						  <tr>
+							<td>翻译</td>
+							<td><a href="http://translate.google.com">translate.google.com</a></td>
+						  </tr>
+						</tbody>
+					  </table>
+					</div>
+				  </article>
+			  </div>
+			  
+			  <div class="span4">
+				  <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>我的流程</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content">
+					  <table class="m-table table-hover">
+						<thead>
+						  <tr>
+							<th>编号</th>
+							<th>流程定义</th>
+							<th>创建时间</th>
+							<th>&nbsp;</th>
+						  </tr>
+						</thead>
+			
+						<tbody>
+						<c:forEach items="${historicProcessInstances}" var="item">
+						  <tr>
+							<td>${item.id}</td>
+							<td>${item.processDefinitionId}</td>
+							<td><fmt:formatDate value="${item.startTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>
+			                  <a href="${scopePrefix}/bpm/workspace-viewHistory.do?processInstanceId=${item.id}" class="btn btn-small btn-primary">历史</a>
+							</td>
+						  </tr>
+						  </c:forEach>
+						</tbody>
+					  </table>
+					</div>
+				  </article>
+				  <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>待办任务</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content">
+					  <table class="m-table table-hover">
+						<thead>
+						  <tr>
+							<th>编号</th>
+							<th>名称</th>
+							<th>创建时间</th>
+							<th>&nbsp;</th>
+						  </tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${personalTasks}" var="item">
+						  <tr>
+							<td>${item.id}</td>
+							<td>${item.name}</td>
+							<td><fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td>
+							  <a href="${scopePrefix}/form/form-viewTaskForm.do?taskId=${item.id}" class="btn btn-small btn-primary">处理</a>
+							</td>
+						  </tr>
+						  </c:forEach>
+						</tbody>
+					  </table>
+					</div>
+				  </article>
+			  </div>
+		
+			  <div class="span4">
+				  <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>常用流程</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content">
+					  <table class="m-table table-hover">
+						<thead>
+						  <tr>
+							<th>名称</th>
+							<th width="20%">&nbsp;</th>
+						  </tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${bpmProcesses}" var="item">
+						  <tr>
+							<td>${item.name}</td>
+							<td>
+							  <a href="${scopePrefix}/form/form-viewStartForm.do?bpmProcessId=${item.id}" class="btn btn-small btn-primary">发起</a>
+							</td>
+						  </tr>
+						  </c:forEach>
+						</tbody>
+					  </table>
+					</div>
+				  </article>
+				  <article class="m-widget-2">
+			        <header class="header">
+					  <h4 class="title"><i class="icon-user"></i>天气预报</h4>
+					  <div class="ctrl">
+					    <a class="btn"><i class="icon-chevron-up"></i></a>
+					  </div>
+					</header>
+			        <div class="content content-inner">
+					  <iframe src="http://m.weather.com.cn/m/pn12/weather.htm" style="border:0px"></iframe>
+					</div>
+				  </article>
+			  </div>
+		    </div>
+      </section>
   </body>
 
 </html>

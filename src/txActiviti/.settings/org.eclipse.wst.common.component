@@ -3,6 +3,7 @@
     <wb-module deploy-name="txActiviti">
         <wb-resource deploy-path="/" source-path="/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="txActiviti"/>
         <property name="java-output-path" value="/txActiviti/build/classes"/>
     </wb-module>

@@ -1,7 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="/taglibs.jsp"%>
 <%pageContext.setAttribute("currentHeader", "table");%>
-<%pageContext.setAttribute("currentMenu", "table");%>
+<%pageContext.setAttribute("currentMenu", "serviceModule");%>
 <!doctype html>
 <html>
 
@@ -27,7 +27,7 @@ $(function() {
     <%@include file="/header/table.jsp"%>
 
     <div class="row-fluid">
-	  <%@include file="/menu/table-manage.jsp"%>
+	  <%@include file="/menu/serviceModule.jsp"%>
 
 	<!-- start of main -->
     <section id="m-main" class="span10">
@@ -43,13 +43,19 @@ $(function() {
   <input id="table-uuId" type="hidden" name="uuId" value="${model.uuId}">
   </c:if>
   <div class="control-group">
-    <label class="control-label" for="cms-comment_cmsCommentname">表名称:</label>
+    <label class="control-label" for="table-packageName">所在模块:</label>
+	<div class="controls">
+	  <input id="table-packageName" type="text" name="packageName" value="${packageName}" size="40" class="text required" readonly >
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="table-tableName">表名称:</label>
 	<div class="controls">
 	  <input id="table-tableName" type="text" name="tableName" value="${model.tableName}" size="40" class="text required" minlength="2" maxlength="50">
     </div>
   </div>
   <div class="control-group">
-    <label class="control-label" for="cms-comment_cmsCommentname">标 题:</label>
+    <label class="control-label" for="table-tableNameComment">标 题:</label>
 	<div class="controls">
 	  <input id="table-tableNameComment" type="text" name="tableNameComment" value="${model.tableNameComment}" size="40" class="text required" minlength="2" maxlength="50">
     </div>

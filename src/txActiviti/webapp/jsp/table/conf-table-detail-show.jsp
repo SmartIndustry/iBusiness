@@ -30,7 +30,7 @@
   <body>
       <%@include file="/header/table.jsp"%>
       <div class="row-fluid">
-	  <%@include file="/menu/table-manage.jsp"%>
+	  <%@include file="/menu/serviceModule.jsp"%>
 	      <!-- start of main -->
 	      <section id="m-main" class="span10">
 			  <article class="m-widget">

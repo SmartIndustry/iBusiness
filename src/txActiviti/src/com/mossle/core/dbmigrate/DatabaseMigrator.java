@@ -12,16 +12,20 @@ import com.googlecode.flyway.core.Flyway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * flyway在项目启动后，自动创建表结构和初始化数据。
+ * 
+ * @author JiangBo
+ * 
+ */
 public class DatabaseMigrator {
-    private static Logger logger = LoggerFactory
-            .getLogger(DatabaseMigrator.class);
+    private static Logger logger = LoggerFactory.getLogger(DatabaseMigrator.class);
     private DataSource dataSource;
     private Properties applicationProperties;
 
     @PostConstruct
     public void execute() {
-        if (!"true".equals(applicationProperties
-                .getProperty("dbmigrate.enable"))) {
+        if (!"true".equals(applicationProperties.getProperty("dbmigrate.enable"))) {
             logger.info("skip dbmigrate");
 
             return;
@@ -35,30 +39,25 @@ public class DatabaseMigrator {
             flyway.clean();
         }
 
-        Collection<DatabaseMigrateInfo> databaseMigrateInfos = new DatabaseMigrateInfoBuilder(
-                applicationProperties).build();
+        Collection<DatabaseMigrateInfo> databaseMigrateInfos = new DatabaseMigrateInfoBuilder(applicationProperties)
+                .build();
 
         for (DatabaseMigrateInfo databaseMigrateInfo : databaseMigrateInfos) {
             if (!databaseMigrateInfo.isEnabled()) {
-                logger.info("skip migrate : {}, {}, {}",
-                        databaseMigrateInfo.getName(),
-                        databaseMigrateInfo.getTable(),
+                logger.info("skip migrate : {}, {}, {}", databaseMigrateInfo.getName(), databaseMigrateInfo.getTable(),
                         databaseMigrateInfo.getLocation());
 
                 continue;
             }
-
-            logger.info("migrate : {}, {}, {}", databaseMigrateInfo.getName(),
-                    databaseMigrateInfo.getTable(),
+            logger.info("migrate : {}, {}, {}", databaseMigrateInfo.getName(), databaseMigrateInfo.getTable(),
                     databaseMigrateInfo.getLocation());
-
             Flyway flyway = new Flyway();
             flyway.setInitOnMigrate(true);
             flyway.setInitVersion("0");
             flyway.setDataSource(dataSource);
             flyway.setTable(databaseMigrateInfo.getTable());
-            flyway.setLocations(new String[] { databaseMigrateInfo
-                    .getLocation() });
+            flyway.setLocations(new String[] {
+                databaseMigrateInfo.getLocation() });
             flyway.migrate();
         }
     }
